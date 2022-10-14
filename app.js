@@ -13,8 +13,15 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 // route setting
+// index page
 app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurants.results })
+})
+
+// show page
+app.get('/restaurants/:id', (req, res) => {
+  const restaurant = restaurants.results.find(restaurant => req.params.id === restaurant.id.toString())
+  res.render('show', { restaurant })
 })
 
 // start and listen server
