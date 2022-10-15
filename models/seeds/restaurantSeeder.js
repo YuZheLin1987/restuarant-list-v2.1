@@ -17,6 +17,7 @@ db.once('open', () => {
 
   for (i=0; i < restaurants.results.length; i++) {
     Restaurant.create({ 
+      id: `${restaurants.results[i].id}`,
       name: `${restaurants.results[i].name}`,
       name_en: `${restaurants.results[i].name_en}`,
       category: `${restaurants.results[i].category}`,
