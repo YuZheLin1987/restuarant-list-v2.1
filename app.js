@@ -58,8 +58,8 @@ app.post('/restaurants', (req, res) => {
 
 // show page
 app.get('/restaurants/:id', (req, res) => {
-  const restaurant = restaurants.results.find(restaurant => req.params.id === restaurant.id.toString())
-  res.render('show', { restaurant })
+  const id = req.params.id
+  return Restaurant.findById(id).lean().then(restaurant => res.render('show', { restaurant })).catch(error => console.log(error))
 })
 
 // search function
