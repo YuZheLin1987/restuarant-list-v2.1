@@ -1,4 +1,4 @@
-# restuarant-list-v2
+# restuarant-list-v2.1
 ##功能
 1. 瀏覽全部餐廳列表
 2. 瀏覽單一餐廳詳細資料
