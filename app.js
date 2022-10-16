@@ -42,7 +42,6 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  const id = req.body.id
   const name = req.body.name
   const name_en = req.body.name_en
   const category = req.body.category
@@ -53,7 +52,7 @@ app.post('/restaurants', (req, res) => {
   const rating = req.body.rating
   const description = req.body.description
 
-  return Restaurant.create({ id, name, name_en, category, image, location, phone, google_map, rating, description }).then(() => res.redirect('/')).catch(error => console.log(error))
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description }).then(() => res.redirect('/')).catch(error => console.log(error))
 })
 
 // show page
@@ -65,7 +64,7 @@ app.get('/restaurants/:id', (req, res) => {
 // search function
 app.get('/search', (req, res) => {
   const filteredRestaurant = restaurants.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(req.query.keyword.trim().toLowerCase()) | restaurant.category.toLowerCase().includes(req.query.keyword.trim().toLowerCase())
+    return restaurant.name.toLowerCase().includes(req.query.keyword.trim().toLowerCase()) || restaurant.category.toLowerCase().includes(req.query.keyword.trim().toLowerCase())
   })
     
   res.render('index', { restaurants: filteredRestaurant, keyword: req.query.keyword })
