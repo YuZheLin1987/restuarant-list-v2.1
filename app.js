@@ -33,10 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // route setting
 // index page
 app.get('/', (req, res) => {
-  Restaurant.find()
-    .lean()
-    .then(restaurant => res.render('index', { restaurant }))
-    .catch(error => console.error(error))
+  Restaurant.find().lean().then(restaurant => res.render('index', { restaurant })).catch(error => console.error)
 })
 
 // new page
